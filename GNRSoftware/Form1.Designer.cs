@@ -75,16 +75,20 @@
             this.btn_Reset.TabIndex = 2;
             this.btn_Reset.Text = "RESET";
             this.btn_Reset.UseVisualStyleBackColor = true;
+            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
             // txt_BarCode
             // 
+            this.txt_BarCode.CausesValidation = false;
             this.txt_BarCode.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_BarCode.Location = new System.Drawing.Point(21, 170);
+            this.txt_BarCode.Multiline = true;
             this.txt_BarCode.Name = "txt_BarCode";
-            this.txt_BarCode.Size = new System.Drawing.Size(491, 33);
-            this.txt_BarCode.TabIndex = 3;
-            this.txt_BarCode.Text = "    112233   ";
+            this.txt_BarCode.Size = new System.Drawing.Size(491, 31);
+            this.txt_BarCode.TabIndex = 1;
             this.txt_BarCode.TextChanged += new System.EventHandler(this.txt_BarCode_TextChanged);
+            this.txt_BarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BarCode_KeyDown);
+            this.txt_BarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_BarCode_KeyUp);
             // 
             // groupBox1
             // 
