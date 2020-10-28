@@ -56,7 +56,7 @@
             this.lab_DateTime.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lab_DateTime.AutoSize = true;
             this.lab_DateTime.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_DateTime.Location = new System.Drawing.Point(16, 14);
+            this.lab_DateTime.Location = new System.Drawing.Point(25, 19);
             this.lab_DateTime.Name = "lab_DateTime";
             this.lab_DateTime.Size = new System.Drawing.Size(102, 36);
             this.lab_DateTime.TabIndex = 1;
@@ -143,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 471);
+            this.ClientSize = new System.Drawing.Size(530, 471);
             this.Controls.Add(this.lab_ErrorMessage);
             this.Controls.Add(this.lab_grnCount);
             this.Controls.Add(this.btn_Submit);

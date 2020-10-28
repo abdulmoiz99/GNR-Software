@@ -14,7 +14,7 @@ namespace GNRSoftware
     public partial class Form1 : Form
     {
         int grnCount = 0, totalGrnCount = 0;
-        List<string> barcodeList = new List<string>();
+        List<string> GRNList = new List<string>();
 
         public Form1()
         {
@@ -67,24 +67,46 @@ namespace GNRSoftware
 
         private void txt_BarCode_TextChanged(object sender, EventArgs e)
         {
-            string barcode = txt_BarCode.Text.Trim();
-            if (txt_BarCode.Text != "")
-            {
+            //string barcode = txt_BarCode.Text.Trim();
+            //if (txt_BarCode.Text != "")
+            //{
 
-                if (barcode.Length != 6) // bar code must be of 6 digits - client requirement
+            //    if (barcode.Length != 6) // bar code must be of 6 digits - client requirement
+            //    {
+            //        lab_ErrorMessage.ForeColor = Color.Red;
+            //        lab_ErrorMessage.Text = barcode + "-Invalid Barcode";
+            //    }
+            //    else
+            //    {
+            //        lab_ErrorMessage.ForeColor = Color.LimeGreen;
+            //        lab_ErrorMessage.Text = barcode + " Accepted";
+            //        AddBarCodeToFile(barcode);
+            //        UpdateCount();
+            //    }
+            //}
+            //txt_BarCode.Text = string.Empty;
+
+            if (txt_BarCode.TextLength == txt_BarCode.MaxLength)
+            {
+                if (!GRNList.Contains(txt_BarCode.Text))
                 {
-                    lab_ErrorMessage.ForeColor = Color.Red;
-                    lab_ErrorMessage.Text = barcode + "-Invalid Barcode";
+                    GRNList.Add(txt_BarCode.Text);
+                    AddBarCodeToFile(txt_BarCode.Text);
+                    UpdateCount();
+                    lab_ErrorMessage.ForeColor = Color.LimeGreen;
+                    lab_ErrorMessage.Text = txt_BarCode.Text + " Accepted";
                 }
                 else
                 {
-                    lab_ErrorMessage.ForeColor = Color.LimeGreen;
-                    lab_ErrorMessage.Text = barcode + " Accepted";
-                    AddBarCodeToFile(barcode);
-                    UpdateCount();
+                    lab_ErrorMessage.ForeColor = Color.Red;
+                    lab_ErrorMessage.Text = txt_BarCode.Text + "-Already Exist";
                 }
+
+                txt_BarCode.SelectAll();
             }
-            txt_BarCode.Text = string.Empty;
+
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
