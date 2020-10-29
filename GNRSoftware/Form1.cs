@@ -19,7 +19,7 @@ namespace GNRSoftware
         List<string> barcodeList = new List<string>();
 
 
-public Form1()
+        public Form1()
         {
             InitializeComponent();
         }
@@ -34,6 +34,38 @@ public Form1()
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
+
+            using (SLDocument sl = new SLDocument())
+            {
+               // sl.SetCellValue("A1", 0);
+                for (int i = 1; i <= barcodeList.Count; i++)
+                {
+                }
+                SaveFileDialog saveDlg = new SaveFileDialog();
+                saveDlg.Filter = "Excel files (.xlsx)|.xlsx";
+                saveDlg.FilterIndex = 0;
+                saveDlg.RestoreDirectory = true;
+                saveDlg.Title = "Export Excel File To";
+                if (saveDlg.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        Cursor = Cursors.WaitCursor;
+                        string path = saveDlg.FileName;
+                        sl.SaveAs(path);
+                    }
+
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Cursor = Cursors.Default;
+                    }
+                }
+            }
 
             txt_BarCode.Focus();
             txt_BarCode.SelectAll();
@@ -94,6 +126,7 @@ public Form1()
         {
             if (e.KeyValue == (char)Keys.Enter)
             {
+                lab_ErrorMessage.Visible = true;
                 if (barcodeList.Contains(txt_BarCode.Text))
                 {
                     lab_ErrorMessage.ForeColor = Color.Red;
@@ -170,3 +203,21 @@ public Form1()
         }
     }
 }
+
+
+
+//Random generator = new Random();
+//String r = "";
+//Cursor.Current = Cursors.WaitCursor;
+//            for (int i = 0; i< 10000000; i++)
+//            {
+//                using (StreamWriter sw = File.AppendText(Application.StartupPath + "\\data.dat"))
+//                {
+//                    //FORMAT  barcode , bit 
+
+//                    //if bit  = 0  :  reset == false else true
+//                    r = generator.Next(0, 999999).ToString("D6");
+//sw.WriteLine(r);
+//                }
+//            }
+//            Cursor.Current = Cursors.Default;

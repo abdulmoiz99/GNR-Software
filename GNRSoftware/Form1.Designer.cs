@@ -82,9 +82,8 @@
             this.txt_BarCode.CausesValidation = false;
             this.txt_BarCode.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_BarCode.Location = new System.Drawing.Point(21, 170);
-            this.txt_BarCode.Multiline = true;
             this.txt_BarCode.Name = "txt_BarCode";
-            this.txt_BarCode.Size = new System.Drawing.Size(491, 31);
+            this.txt_BarCode.Size = new System.Drawing.Size(491, 33);
             this.txt_BarCode.TabIndex = 1;
             this.txt_BarCode.Click += new System.EventHandler(this.txt_BarCode_Click);
             this.txt_BarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BarCode_KeyDown);
@@ -142,6 +141,7 @@
             this.lab_ErrorMessage.Size = new System.Drawing.Size(84, 28);
             this.lab_ErrorMessage.TabIndex = 7;
             this.lab_ErrorMessage.Text = "label2";
+            this.lab_ErrorMessage.Visible = false;
             // 
             // Form1
             // 
@@ -156,6 +156,7 @@
             this.Controls.Add(this.btn_Reset);
             this.Controls.Add(this.lab_DateTime);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
