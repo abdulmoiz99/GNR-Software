@@ -39,7 +39,13 @@
             this.btn_Submit = new System.Windows.Forms.Button();
             this.lab_grnCount = new System.Windows.Forms.Label();
             this.lab_ErrorMessage = new System.Windows.Forms.Label();
+            this.pnl_Reset = new System.Windows.Forms.Panel();
+            this.btn_ClosePanel = new System.Windows.Forms.Button();
+            this.btn_PanelReset = new System.Windows.Forms.Button();
+            this.txt_Password = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.pnl_Reset.SuspendLayout();
             this.SuspendLayout();
             // 
             // lab_CurrentGRN
@@ -143,11 +149,63 @@
             this.lab_ErrorMessage.Text = "label2";
             this.lab_ErrorMessage.Visible = false;
             // 
+            // pnl_Reset
+            // 
+            this.pnl_Reset.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnl_Reset.Controls.Add(this.btn_ClosePanel);
+            this.pnl_Reset.Controls.Add(this.btn_PanelReset);
+            this.pnl_Reset.Controls.Add(this.txt_Password);
+            this.pnl_Reset.Controls.Add(this.label1);
+            this.pnl_Reset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Reset.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Reset.Name = "pnl_Reset";
+            this.pnl_Reset.Size = new System.Drawing.Size(530, 471);
+            this.pnl_Reset.TabIndex = 8;
+            this.pnl_Reset.Visible = false;
+            // 
+            // btn_ClosePanel
+            // 
+            this.btn_ClosePanel.Location = new System.Drawing.Point(309, 172);
+            this.btn_ClosePanel.Name = "btn_ClosePanel";
+            this.btn_ClosePanel.Size = new System.Drawing.Size(87, 31);
+            this.btn_ClosePanel.TabIndex = 3;
+            this.btn_ClosePanel.Text = "CLOSE";
+            this.btn_ClosePanel.UseVisualStyleBackColor = true;
+            this.btn_ClosePanel.Click += new System.EventHandler(this.btn_ClosePanel_Click);
+            // 
+            // btn_PanelReset
+            // 
+            this.btn_PanelReset.Location = new System.Drawing.Point(402, 172);
+            this.btn_PanelReset.Name = "btn_PanelReset";
+            this.btn_PanelReset.Size = new System.Drawing.Size(87, 31);
+            this.btn_PanelReset.TabIndex = 2;
+            this.btn_PanelReset.Text = "RESET";
+            this.btn_PanelReset.UseVisualStyleBackColor = true;
+            this.btn_PanelReset.Click += new System.EventHandler(this.btn_PanelReset_Click);
+            // 
+            // txt_Password
+            // 
+            this.txt_Password.Location = new System.Drawing.Point(96, 142);
+            this.txt_Password.Name = "txt_Password";
+            this.txt_Password.Size = new System.Drawing.Size(393, 27);
+            this.txt_Password.TabIndex = 1;
+            this.txt_Password.Enter += new System.EventHandler(this.txt_Password_Enter);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 142);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Pasword: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 471);
+            this.Controls.Add(this.pnl_Reset);
             this.Controls.Add(this.lab_ErrorMessage);
             this.Controls.Add(this.lab_grnCount);
             this.Controls.Add(this.btn_Submit);
@@ -165,6 +223,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.pnl_Reset.ResumeLayout(false);
+            this.pnl_Reset.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,6 +242,11 @@
         private System.Windows.Forms.Button btn_Submit;
         private System.Windows.Forms.Label lab_grnCount;
         private System.Windows.Forms.Label lab_ErrorMessage;
+        private System.Windows.Forms.Panel pnl_Reset;
+        private System.Windows.Forms.Button btn_ClosePanel;
+        private System.Windows.Forms.Button btn_PanelReset;
+        private System.Windows.Forms.TextBox txt_Password;
+        private System.Windows.Forms.Label label1;
     }
 }
 
