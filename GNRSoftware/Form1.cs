@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace GNRSoftware
 {
     public partial class Form1 : Form
@@ -16,7 +18,8 @@ namespace GNRSoftware
         int grnCount = 0, totalGrnCount = 0;
         List<string> barcodeList = new List<string>();
 
-        public Form1()
+
+public Form1()
         {
             InitializeComponent();
         }
@@ -27,8 +30,11 @@ namespace GNRSoftware
             lab_grnCount.Text = grnCount.ToString();
             lab_TotalGrnCount.Text = totalGrnCount.ToString();
         }
+
+
         private void btn_Submit_Click(object sender, EventArgs e)
         {
+
             txt_BarCode.Focus();
             txt_BarCode.SelectAll();
         }
@@ -36,19 +42,11 @@ namespace GNRSoftware
         {
             try
             {
-                using (var reader = new StreamReader(Application.StartupPath + @"\data.csv"))
+                var lines = File.ReadAllLines(Application.StartupPath + "\\data.dat");
+                foreach (var line in lines)
                 {
-                    while (!reader.EndOfStream)
-                    {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
-                        string value = line[1].ToString();
-                        if (value == "0")
-                        {
-                            barcodeList.Add(line[0].ToString());
-                            totalGrnCount++;
-                        }
-                    }
+                    barcodeList.Add(line.Split(',')[0]);
+                    totalGrnCount++;
                 }
             }
             catch (Exception)
@@ -57,23 +55,39 @@ namespace GNRSoftware
         }
         private static void AddBarCodeToFile(string barcode)
         {
-            using (StreamWriter sw = File.AppendText(Application.StartupPath + "\\data.csv"))
+            using (StreamWriter sw = File.AppendText(Application.StartupPath + "\\data.dat"))
             {
-                //FORMAT  barcode , bit , date
-                //if bit  = 0  :  reset == false else true
-                sw.WriteLine(barcode + ",0," + DateTime.Now.ToShortDateString());
-            }
-        }
+                //FORMAT  barcode , bit 
 
-        private void txt_BarCode_TextChanged(object sender, EventArgs e)
-        {
+                //if bit  = 0  :  reset == false else true
+                sw.WriteLine(barcode);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             InitializeSoftware();
+            lab_grnCount.Text = grnCount.ToString();
+            lab_TotalGrnCount.Text = totalGrnCount.ToString();
             txt_BarCode.Focus();
             txt_BarCode.SelectAll();
+
+            if (File.Exists(Application.StartupPath + "\\load.config"))
+            {
+                string config = File.ReadAllText(Application.StartupPath + "\\load.config");
+                lab_CurrentGRN.Text = config;
+
+            }
+            else
+            {
+                //Get current date //Save config
+                lab_CurrentGRN.Text = "From Date: " + DateTime.Now.ToShortDateString();
+
+                using (StreamWriter sw = new StreamWriter(Application.StartupPath + "\\load.config", false))
+                {
+                    sw.WriteLine(lab_CurrentGRN.Text);
+                }
+            }
         }
 
         private void txt_BarCode_KeyUp(object sender, KeyEventArgs e)
@@ -98,9 +112,9 @@ namespace GNRSoftware
                     lab_ErrorMessage.ForeColor = Color.LimeGreen;
                     lab_ErrorMessage.Text = txt_BarCode.Text + " Accepted";
                 }
-              txt_BarCode.SelectAll();
+                txt_BarCode.SelectAll();
             }
-          
+
         }
 
         private void txt_BarCode_KeyDown(object sender, KeyEventArgs e)
@@ -113,8 +127,41 @@ namespace GNRSoftware
 
         private void btn_Reset_Click(object sender, EventArgs e)
         {
+
+            lab_CurrentGRN.Text = "From Date: " + DateTime.Now.ToShortDateString();
+
+            using (StreamWriter sw = new StreamWriter(Application.StartupPath + "\\load.config", false))
+            {
+                sw.WriteLine(lab_CurrentGRN.Text);
+            }
+            grnCount = 0;
+            totalGrnCount = 0;
+
+            lab_grnCount.Text = grnCount.ToString();
+            lab_TotalGrnCount.Text = totalGrnCount.ToString();
+
+            File.Delete(Application.StartupPath + "\\data.dat");
+
+            barcodeList.Clear();
+
             txt_BarCode.Focus();
             txt_BarCode.SelectAll();
+        }
+
+
+        private void txt_BarCode_Click(object sender, EventArgs e)
+        {
+            txt_BarCode.Focus();
+            txt_BarCode.SelectAll();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter(Application.StartupPath + "\\load.config", false))
+            {
+                sw.WriteLine(lab_CurrentGRN.Text);
+            }
+
         }
 
         private void DateTimer_Tick(object sender, EventArgs e)

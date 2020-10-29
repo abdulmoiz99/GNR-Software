@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lab_CurrentGRN = new System.Windows.Forms.Label();
             this.lab_DateTime = new System.Windows.Forms.Label();
             this.DateTimer = new System.Windows.Forms.Timer(this.components);
             this.btn_Reset = new System.Windows.Forms.Button();
@@ -42,14 +42,14 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lab_CurrentGRN
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 30);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "From Date: ";
+            this.lab_CurrentGRN.AutoSize = true;
+            this.lab_CurrentGRN.Location = new System.Drawing.Point(23, 48);
+            this.lab_CurrentGRN.Name = "lab_CurrentGRN";
+            this.lab_CurrentGRN.Size = new System.Drawing.Size(151, 30);
+            this.lab_CurrentGRN.TabIndex = 0;
+            this.lab_CurrentGRN.Text = "From Date: ";
             // 
             // lab_DateTime
             // 
@@ -86,14 +86,14 @@
             this.txt_BarCode.Name = "txt_BarCode";
             this.txt_BarCode.Size = new System.Drawing.Size(491, 31);
             this.txt_BarCode.TabIndex = 1;
-            this.txt_BarCode.TextChanged += new System.EventHandler(this.txt_BarCode_TextChanged);
+            this.txt_BarCode.Click += new System.EventHandler(this.txt_BarCode_Click);
             this.txt_BarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BarCode_KeyDown);
             this.txt_BarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_BarCode_KeyUp);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lab_TotalGrnCount);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lab_CurrentGRN);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 18F);
             this.groupBox1.Location = new System.Drawing.Point(22, 263);
             this.groupBox1.Name = "groupBox1";
@@ -160,6 +160,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GNR SOFTWARE";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -170,7 +171,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lab_CurrentGRN;
         private System.Windows.Forms.Label lab_DateTime;
         private System.Windows.Forms.Timer DateTimer;
         private System.Windows.Forms.Button btn_Reset;
